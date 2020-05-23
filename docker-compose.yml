@@ -1,0 +1,16 @@
+version: '3'
+services:
+  db:
+    image: postgres:12.3
+    ports:
+      - 15432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: shamrocks_user
+      POSTGRES_PASSWORD: my_password
+      POSTGRES_DB: shamrocks_development
+
+volumes:
+  postgres_data:
+    driver: local
