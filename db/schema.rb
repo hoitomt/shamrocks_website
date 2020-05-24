@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2020_05_24_212132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "registrations", force: :cascade do |t|
+    t.string "player_first_name"
+    t.string "player_last_name"
+    t.string "parent_first_name"
+    t.string "parent_last_name"
+    t.string "email"
+    t.integer "grade_level"
+    t.integer "graduation_year"
+    t.boolean "need_uniform"
+    t.string "uniform_jersey_size"
+    t.string "uniform_short_size"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
 end
