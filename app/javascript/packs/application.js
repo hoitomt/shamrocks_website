@@ -21,5 +21,11 @@ import 'popper.js';
 import 'bootstrap/dist/js/bootstrap';
 
 $(function () {
-  console.log("Hello from Webpack");
+  $('#registration_need_uniform').on('change', function () {
+    if (this.checked) {
+      $('#js-uniform-info').show();
+    } else {
+      $('#js-uniform-info').hide();
+    }
+  });
 })
