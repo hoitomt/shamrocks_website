@@ -1,0 +1,10 @@
+Hello <%= @registration.parent_name %>,
+Thank you for registering for the Eau Claire Shamrocks traveling basketball team! Your registration details are as follows:
+
+Player: <%= @registration.player_name %>
+Grade: <%= @registration.grade_level %>
+Uniform: <%= @registration.need_uniform_h %>
+<% if @registration.need_uniform %>
+Jersey Size: <%= @registration.uniform_jersey_size %>
+Shorts Size: <%= @registration.uniform_short_size %>
+<% end %>
