@@ -65,7 +65,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   config.action_mailer.smtp_settings = {
-    :port           => ENV['SENDGRID_SMTP_PORT'],
+    :port           => ENV['SENDGRID_SMTP_PORT'].to_i,
     :address        => ENV['SENDGRID_SMTP_SERVER'],
     :user_name      => ENV['SENDGRID_SMTP_LOGIN'],
     :password       => ENV['SENDGRID_SMTP_PASSWORD'],
