@@ -8,11 +8,11 @@ gem 'pg', '~> 1.2.3'
 gem 'puma', '~> 4.3.6'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.2'
-gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.10'
 gem 'solargraph'
 gem 'bootsnap', '>= 1.4.8', require: false
 gem 'simple_form'
+gem 'stripe'
 
 group :development, :test do
   gem 'byebug', '~> 11.1'

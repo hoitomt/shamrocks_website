@@ -5,10 +5,17 @@
 </p>
 <ul>
   <li><strong>Player:</strong> <%= @registration.player_name %></li>
-  <li><strong>Grade:</strong> <%= @registration.grade_level %></li>
+  <li><strong>Grade:</strong> <%= @registration.grade_level_display %></li>
   <li><strong>Uniform:</strong> <%= @registration.need_uniform_h %></li>
   <% if @registration.need_uniform %>
   <li><strong>Jersey Size:</strong> <%= @registration.uniform_jersey_size %></li>
   <li><strong>Shorts Size:</strong> <%= @registration.uniform_short_size %></li>
   <% end %>
+  <li><strong>Cost:</strong> <%= @registration.amount.to_i %></li>
 </ul>
+
+<p>Your credit card will be charged in the amount of: $<%= @registration.amount.to_i %></p>
+
+<p>Please contact us with any questions: <%= mail_to 'info@ecshamrocksbasketball.com' %></p>
+<p></p>
+<p>Thank You and Let's have a great season!</p>

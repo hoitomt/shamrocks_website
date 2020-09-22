@@ -4,10 +4,12 @@
 <head>
   <title>Eau Claire Shamrocks - Home of the Eau Claire Shamrocks basketball club</title>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <%= csp_meta_tag %>
 
   <%= stylesheet_pack_tag 'stylesheets' %>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= yield :javascript_custom_script_pre %>
+  <%= javascript_pack_tag 'application' %>
 </head>
 
 <body>
@@ -19,6 +21,7 @@
   </div>
   <%= render "layouts/footer" %>
 
+  <%= yield :javascript_custom_script_post %>
 </body>
 
 </html>
