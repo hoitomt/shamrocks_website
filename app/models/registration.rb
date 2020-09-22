@@ -33,9 +33,11 @@ class Registration < ApplicationRecord
     },
   }
 
+  TEAM_GENDERS = ['Boys', 'Girls']
+
   validates :player_first_name, :player_last_name,
             :parent_first_name, :parent_last_name,
-            :email, :grade_level,
+            :email, :grade_level, :team_gender,
             presence: true
   validates :grade_level, :inclusion=> { :in => %w{fourth_grade fifth_grade sixth_grade seventh_grade eighth_grade} }
   validate :uniform_piece_is_required_if_need_uniform_is_true

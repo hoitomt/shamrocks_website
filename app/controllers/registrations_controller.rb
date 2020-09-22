@@ -35,7 +35,7 @@ class RegistrationsController < ApplicationController
 
   def registration_params
     params.require(:registration).permit(:player_first_name, :player_last_name,
-      :parent_first_name, :parent_last_name, :email, :grade_level,
+      :parent_first_name, :parent_last_name, :email, :grade_level, :team_gender,
       :graduation_year, :need_uniform, :uniform_jersey_size, :uniform_short_size)
   end
 
@@ -47,6 +47,7 @@ class RegistrationsController < ApplicationController
       "email" => registration.email,
       "parent_name" => registration.parent_name,
       "grade_level" => registration.grade_level,
+      "team_gender" => registration.team_gender,
       "amount" => "$#{registration.amount}",
       "jersey" => registration.uniform_jersey_size,
       "short" => registration.uniform_short_size

@@ -10,6 +10,7 @@ RSpec.describe Registration, type: :model do
       parent_last_name: 'Johnson',
       email: 'magic_man@lakers.com',
       grade_level: 'fourth_grade',
+      team_gender: 'Girls'
     }
   }
 

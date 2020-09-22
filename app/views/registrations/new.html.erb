@@ -19,6 +19,7 @@
   <%= f.input :player_last_name %>
 
   <%= f.input :grade_level, collection: Registration.grade_level_name_map %>
+  <%= f.input :team_gender, collection: Registration::TEAM_GENDERS %>
   <%= f.input :need_uniform %>
   <div id="js-uniform-info">
     <%= f.input :uniform_jersey_size, collection: Registration::SIZES, prompt: 'Not Needed' %>
