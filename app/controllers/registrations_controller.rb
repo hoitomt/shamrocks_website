@@ -44,12 +44,12 @@ class RegistrationsController < ApplicationController
   def process_payment(stripe_token, registration)
     Stripe.api_key = ENV['STRIPE_SECRET_KEY']
     charge_details = {
-      "email" => "#{registration.email}",
-      "parent_name" => "#{registration.parent_name}",
-      "grade_level" => "#{registration.grade_level}",
+      "email" => registration.email,
+      "parent_name" => registration.parent_name,
+      "grade_level" => registration.grade_level,
       "amount" => "$#{registration.amount}",
-      "jersey" => "$#{registration.uniform_jersey_size}",
-      "short" => "$#{registration.uniform_short_size}"
+      "jersey" => registration.uniform_jersey_size,
+      "short" => registration.uniform_short_size
     }
 
     begin

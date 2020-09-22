@@ -29,6 +29,12 @@
   <%= f.input :parent_last_name %>
   <%= f.input :email, input_html: { autocomplete: 'email' } %>
 
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label" for="card-element">Amount Owed:</label>
+    <div class="col-sm-9" style="padding-top: 8px;">
+      <strong><span id="js-amount-owed"></span></strong>
+    </div>
+  </div>
 
   <div class="form-group row">
     <label class="col-sm-3 col-form-label" for="card-element">Credit or debit card</label>

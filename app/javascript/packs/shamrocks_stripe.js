@@ -17,6 +17,7 @@ function initStripe() {
 
     handleFormSubmission(elements, card, stripe)
     console.log("Stripe is ready for business");
+    listenForAmountChanges();
   }
 }
 
@@ -44,7 +45,7 @@ function handleFormSubmission(elements, card, stripe) {
   // Handle form submission.
   var form = document.getElementById('new_registration');
   form.addEventListener('submit', function (event) {
-    if (isMoneyOwed()) {
+    if (amountOwed() > 0) {
       event.preventDefault();
 
       stripe.createToken(card).then(function (result) {
@@ -63,34 +64,37 @@ function handleFormSubmission(elements, card, stripe) {
   });
 }
 
-function isMoneyOwed() {
-  var gradeLevelSelector = document.getElementById('registration_grade_level');
-  var rawGradeLevelMap = JSON.parse(document.getElementById('js-payment-data').dataset.gradeLevelMap);
-  console.log("Grade Level Selector", gradeLevelSelector.value);
+function listenForAmountChanges() {
+  document.getElementById('registration_grade_level').addEventListener('change', amountOwed);
+  document.getElementById('registration_need_uniform').addEventListener('change', amountOwed);
+  document.getElementById('registration_uniform_jersey_size').addEventListener('change', amountOwed);
+  document.getElementById('registration_uniform_short_size').addEventListener('change', amountOwed);
+}
+
+function amountOwed() {
+  let amount = 0;
+  let gradeLevelSelector = document.getElementById('registration_grade_level');
+  let uniformCheckBox = document.getElementById('registration_need_uniform');
+  let jerseySelector = document.getElementById('registration_uniform_jersey_size');
+  let shortSelector = document.getElementById('registration_uniform_short_size');
+
+  let rawGradeLevelMap = JSON.parse(document.getElementById('js-payment-data').dataset.gradeLevelMap);
+
   if (gradeLevelSelector.value) {
-    var gradeLevel = rawGradeLevelMap[gradeLevelSelector.value];
-    console.log("Grade Level Amount", gradeLevel.amount);
-    if (gradeLevel.amount > 0) {
-      return true;
-    }
+    let gradeLevel = rawGradeLevelMap[gradeLevelSelector.value];
+    amount += gradeLevel.amount;
   }
 
-  var uniformCheckBox = document.getElementById('registration_need_uniform');
-  console.log("Uniform check box", uniformCheckBox.value);
   if (uniformCheckBox.value == "1") {
-    let jerseySelector = document.getElementById('registration_uniform_jersey_size');
-    console.log("Jersey Selector", jerseySelector.value);
     if (jerseySelector.value && jerseySelector.value != '') {
-      return true;
+      amount += 25;
     }
-    let shortSelector = document.getElementById('registration_uniform_short_size');
-    console.log("Short Selector", shortSelector.value);
     if (shortSelector.value && shortSelector.value != '') {
-      return true;
+      amount += 25;
     }
   }
-
-  return false;
+  document.getElementById('js-amount-owed').innerHTML = `\$${amount}`;
+  return amount;
 }
 
 // Submit the form with the token ID.
