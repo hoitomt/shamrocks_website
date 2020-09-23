@@ -4,7 +4,11 @@
     <%= link_to 'About Us', about_path, class: "sr-nav-link d-none d-md-inline-block" %>
     <%= link_to 'Teams', teams_path, class: "sr-nav-link d-none d-md-inline-block" %>
     <li class="nav-item sr-nav-item dropdown">
-      <%= link_to 'Documents', documents_path, "class" => "sr-nav-link-with-sub", "data-toggle" => "dropdown", "role" => "button", "aria-haspopup" => "true", "aria-expanded" => "false" %>
+      <%= link_to 'Documents', documents_path, "class" => "sr-nav-link-with-sub",
+                                               "data-toggle" => "dropdown",
+                                               "role" => "button",
+                                               "aria-haspopup" => "true",
+                                               "aria-expanded" => "false" %>
       <div class="sr-dropdown-menu dropdown-menu">
         <%= link_to 'Registration Letter', registration_letter_path, class: "sr-dropdown-item" %>
         <%= link_to 'Grievance Document', grievance_document_path, class: "sr-dropdown-item" %>
@@ -14,13 +18,5 @@
       </div>
     </li>
     <%= link_to 'Mailing List', mailing_list_path, class: "sr-nav-link d-none d-md-inline-block" %>
-    <!-- <li class="nav-item sr-nav-item dropdown">
-      <%= link_to 'Admin', '#', "class" => "sr-nav-link-with-sub", "data-toggle" => "dropdown", "role" => "button", "aria-haspopup" => "true", "aria-expanded" => "false" %>
-      <div class="sr-dropdown-menu dropdown-menu">
-        <a class="sr-dropdown sr-dropdown-item" href="#">Registrations</a>
-        <a class="sr-dropdown-item" href="#">Uniforms</a>
-        <a class="sr-dropdown sr-dropdown-item" href="#">Request Gym Space</a>
-      </div>
-    </li> -->
   </div>
 </nav>

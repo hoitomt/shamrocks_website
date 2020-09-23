@@ -20,7 +20,6 @@ class RegistrationsController < ApplicationController
       flash[:alert] = @stripe_error_message
       render :new and return
     end
-    @registration.charge_identifier = @charge.id
 
     if @registration.save
       RegistrationMailer.confirmation(@registration).deliver_now
@@ -42,6 +41,7 @@ class RegistrationsController < ApplicationController
   # Token is created using Stripe Checkout or Elements!
   # Get the payment token ID submitted by the form
   def process_payment(stripe_token, registration)
+    return true if registration.amount <= 0
     Stripe.api_key = ENV['STRIPE_SECRET_KEY']
     charge_details = {
       "email" => registration.email,
@@ -60,6 +60,7 @@ class RegistrationsController < ApplicationController
         description: charge_details.to_json,
         source: stripe_token,
       })
+      @registration.charge_identifier = @charge.id
       return true
     rescue Stripe::CardError => e
       error_message = e.error.message

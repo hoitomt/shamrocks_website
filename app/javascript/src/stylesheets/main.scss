@@ -44,7 +44,7 @@ body, button, input, select, textarea {
 }
 
 a.sr-nav-link, a.sr-nav-link-with-sub {
-  font-size: 14px;
+  font-size: 20px;
   color: white;
   font-weight: bold;
   padding: 15px;
@@ -68,6 +68,7 @@ a.sr-nav-link-with-sub::after {
 }
 
 .sr-nav-item {
+  padding-top: 5px;
   list-style: none;
   line-height: 51px;
 }
