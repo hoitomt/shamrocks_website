@@ -26,7 +26,11 @@ class RegistrationsController < ApplicationController
     end
 
     if @registration.save
-      RegistrationMailer.confirmation(@registration).deliver_now
+      begin
+        RegistrationMailer.confirmation(@registration).deliver_now
+      rescue Exception => e
+        Rails.logger.error("Error sending the confirmation message #{e}")
+      end
       flash[:notice] = "Thank you for registering!"
       redirect_to root_path
     else
