@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :registrations, except: [:index, :edit, :update, :delete]
+  resources :registrations, except: [:edit, :update, :delete]
   root to: 'static#index'
 
   get 'home', to: 'static#home', as: 'home'

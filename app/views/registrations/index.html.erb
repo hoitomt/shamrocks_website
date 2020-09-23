@@ -1,0 +1,23 @@
+<div class="mt-3 sr-content">
+  <h1>Registrations</h1>
+  <table class="table">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Grade</th>
+      <th scope="col">Uniform Needed?</th>
+      <th scope="col">Jersey Size</th>
+      <th scope="col">Short Size</th>
+    </tr>
+    <% @registrations.each do |registration| %>
+    <tr>
+      <td title="<%= registration.id %> | <%= registration.charge_identifier %>"><%= registration.player_name %></td>
+      <td><%= registration.team_gender %></td>
+      <td><%= registration.grade_level_display %></td>
+      <td><%= registration.need_uniform %></td>
+      <td><%= registration.uniform_jersey_size %></td>
+      <td><%= registration.uniform_short_size %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>

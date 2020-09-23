@@ -1,4 +1,8 @@
 class RegistrationsController < ApplicationController
+  def index
+    @registrations = Registration.all
+  end
+
   def new
     @registration = Registration.new
   end
