@@ -73,8 +73,29 @@ class Registration < ApplicationRecord
     "#{player_first_name} #{player_last_name}"
   end
 
+  def player_name_with_year
+    year = self.created_at.year
+    "#{player_name} | Grade: #{grade_level} | Year: #{year}"
+  end
+
   def parent_name
     "#{parent_first_name} #{parent_last_name}"
+  end
+
+  def grade_level_selected
+    grade_level.blank? || grade_level == "0" ? nil : grade_level
+  end
+
+  def team_gender_selected
+    team_gender.blank? ? nil : team_gender
+  end
+
+  def uniform_jersey_size_selected
+    uniform_jersey_size == "Not Needed" ? nil : uniform_jersey_size
+  end
+
+  def uniform_short_size_selected
+    uniform_jersey_size == "Not Needed" ? nil : uniform_short_size
   end
 
   def need_uniform_h

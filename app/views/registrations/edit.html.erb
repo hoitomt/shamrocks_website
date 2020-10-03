@@ -1,0 +1,54 @@
+<div class="mt-3 sr-content">
+
+  <h1>Add Uniform for <%= @registration.player_name %></h1>
+  <%= simple_form_for :registration, url: registrations_path,
+    wrapper: :horizontal_form,
+    wrapper_mappings: {
+      boolean:       :horizontal_boolean,
+      check_boxes:   :horizontal_collection,
+      date:          :horizontal_multi_select,
+      datetime:      :horizontal_multi_select,
+      file:          :horizontal_file,
+      radio_buttons: :horizontal_collection,
+      range:         :horizontal_range,
+      time:          :horizontal_multi_select
+    } do |f| %>
+
+  <%= f.error_notification %>
+  <hr>
+  <%= f.input :uniform_jersey_size, collection: Registration::SIZES, prompt: 'Not Needed' %>
+  <%= f.input :uniform_short_size, collection: Registration::SIZES, prompt: 'Not Needed' %>
+
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label" for="card-element">Amount Owed:</label>
+    <div class="col-sm-9" style="padding-top: 8px;">
+      <strong><span id="js-amount-owed"></span></strong>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label" for="card-element">Credit or debit card</label>
+    <div class="col-sm-9">
+      <div id="card-element">
+        <!-- A Stripe Element will be inserted here. -->
+      </div>
+      <!-- Used to display form errors. -->
+      <div id="card-errors" role="alert"></div>
+    </div>
+  </div>
+
+
+  <div class="form-group row mb-0">
+    <div class="col-sm-9 offset-sm-3">
+      <button class="btn btn-primary">Order Uniform</button>
+    </div>
+  </div>
+  <% end %>
+</div>
+<div id='js-payment-data' data-publishable-key=<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>
+  data-grade-level-map='<%= Registration::GRADE_LEVELS.to_json %>'></div>
+
+<% content_for :javascript_custom_script_post do %>
+<script src="https://js.stripe.com/v3/"></script>
+<script>inititializeStripe();</script>
+<% end %>

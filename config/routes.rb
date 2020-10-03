@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :registrations, except: [:edit, :update, :delete]
+  get 'registrations/select', to: 'registrations#select', as: 'select_registration'
+  get 'registrations/search', to: 'registrations#search', as: 'search_registrations'
+  post 'registrations/edit', to: 'registrations#edit_post', as: 'post_edit_registration'
+  resources :registrations, except: [:delete]
+
   root to: 'static#index'
 
   get 'home', to: 'static#home', as: 'home'

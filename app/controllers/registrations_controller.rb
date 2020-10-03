@@ -38,6 +38,30 @@ class RegistrationsController < ApplicationController
     end
   end
 
+  def select
+    @registrations = Registration.all
+  end
+
+  def search
+    q = params[:q]
+    q.downcase! if q.present?
+    registrations = Registration.where("lower(player_first_name) like ? OR lower(player_last_name) like ?", "%#{q}%", "%#{q}%")
+    result = registrations.map { |reg| { value: reg.id, text: reg.player_name_with_year } }
+    render json: result.to_json
+  end
+
+  def edit_post
+    redirect_to edit_registration_path(id: params[:registration][:id])
+  end
+
+  def edit
+    @registration = Registration.find(params[:id])
+  end
+
+  def update
+    @registration = Registration.find(params[:id])
+  end
+
   private
 
   def registration_params

@@ -20,13 +20,33 @@ const imagePath = (name) => images(name, true)
 import 'jquery';
 import 'popper.js';
 import 'bootstrap/dist/js/bootstrap';
+import 'bootstrap-autocomplete';
 
 $(function () {
+  let checkboxValue = $('#registration_need_uniform').val();
+  if (checkboxValue == "1") {
+    $('#js-uniform-info').show();
+  } else {
+    $('#js-uniform-info').hide();
+  }
+
   $('#registration_need_uniform').on('change', function () {
     if (this.checked) {
       $('#js-uniform-info').show();
     } else {
       $('#js-uniform-info').hide();
     }
+  });
+
+  $('.basicAutoComplete').autoComplete({
+    resolverSettings: {
+      url: '/registrations/search'
+    },
+    preventEnter: true,
+  });
+  $('.basicAutoComplete').on('autocomplete.select', function (evt, item) {
+    console.log('Evt', item);
+    console.log("Select", item);
+    $('#registration_id').val(item.value);
   });
 })

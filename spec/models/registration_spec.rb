@@ -75,4 +75,16 @@ RSpec.describe Registration, type: :model do
       expect(registration.grade_level_display).to eq '4th Grade'
     end
   end
+
+  describe 'registration selector' do
+
+  end
+
+  describe 'update registration' do
+    let(:registration) { Registration.create(registration_params) }
+
+    it 'updates the uniform '
+    it 'does not allow uniform subtractions show message that they need to contact Shamrocks'
+
+  end
 end
