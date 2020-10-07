@@ -1,6 +1,19 @@
 class RegistrationsController < ApplicationController
   def index
-    @registrations = Registration.all
+    regs = Registration.all
+    @registration_map = {}
+    Registration::GRADE_LEVELS.each do |key, contents|
+      @registration_map["#{contents[:display_name]} - Girls"] = []
+      @registration_map["#{contents[:display_name]} - Boys"] = []
+    end
+    regs.each do |reg|
+      key = "#{reg.grade_level_display} - #{reg.team_gender}"
+      if @registration_map[key]
+        @registration_map[key] << reg
+      else
+        @registration_map[key] = [reg]
+      end
+    end
   end
 
   def new

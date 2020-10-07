@@ -9,7 +9,11 @@
       <th scope="col">Jersey Size</th>
       <th scope="col">Short Size</th>
     </tr>
-    <% @registrations.each do |registration| %>
+    <% @registration_map.each do |name_gender, registrations| %>
+    <tr>
+      <td colspan=6 class="font-weight-bold bg-light"><%= name_gender %></td>
+    </tr>
+    <% registrations.each do |registration| %>
     <tr>
       <td title="<%= registration.id %> | <%= registration.charge_identifier %>"><%= registration.player_name %></td>
       <td><%= registration.team_gender %></td>
@@ -18,6 +22,7 @@
       <td><%= registration.uniform_jersey_size %></td>
       <td><%= registration.uniform_short_size %></td>
     </tr>
+    <% end %>
     <% end %>
   </table>
 </div>
