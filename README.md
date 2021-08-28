@@ -3,6 +3,10 @@ Website for the Eau Claire Shamrocks basketball club
 
 ## Development
 
+### New Machine
+- Install postgres `brew install posegres`
+- Install mimetypes: `brew install shared-mime-info`
+
 ### Create the Postgres database container
 ```
 docker-compose up
