@@ -3,12 +3,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
-gem 'rails', '~> 6.0.3'
+gem 'rails', '~> 6.1.4'
 gem 'pg', '~> 1.2.3'
-gem 'puma', '~> 4.3.8'
+gem 'puma', '~> 5.4.0'
 gem 'sass-rails', '>= 6'
-gem 'webpacker', '~> 5.2'
-gem 'jbuilder', '~> 2.10'
+gem 'webpacker', '~> 5.4.2'
+gem 'jbuilder', '~> 2.11'
 gem 'solargraph'
 gem 'bootsnap', '>= 1.4.8', require: false
 gem 'simple_form'
@@ -22,9 +22,9 @@ end
 
 group :development do
   gem 'web-console', '>= 4.0.4'
-  gem 'listen', '~> 3.2'
+  gem 'listen', '~> 3.7'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen', '~> 2.0'
 end
 
 group :test do
