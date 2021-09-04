@@ -76,6 +76,22 @@ RSpec.describe Registration, type: :model do
     end
   end
 
+  describe 'duplicate registrations' do
+    it 'adds an error for duplicate registrations' do
+      Registration.create(registration_params)
+      dup_registration = Registration.new(registration_params)
+      expect(dup_registration.valid?).to eq false
+      expect(dup_registration.errors[:grade_level].first).to match "A registration already exists"
+    end
+
+    it 'does not add an error for dupliate registrations if the override flag is set' do
+      Registration.create(registration_params)
+      dup_registration = Registration.new(registration_params)
+      dup_registration.override_duplicate_registration = true
+      expect(dup_registration.valid?).to eq true
+    end
+  end
+
   describe 'registration selector' do
 
   end

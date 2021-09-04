@@ -23,14 +23,14 @@ import 'bootstrap/dist/js/bootstrap';
 import 'bootstrap-autocomplete';
 
 $(function () {
-  let checkboxValue = $('#registration_need_uniform').val();
-  if (checkboxValue == "1") {
+  let needUniformCheckbox = $('#registration_need_uniform');
+  if (needUniformCheckbox.is(':checked')) {
     $('#js-uniform-info').show();
   } else {
     $('#js-uniform-info').hide();
   }
 
-  $('#registration_need_uniform').on('change', function () {
+  needUniformCheckbox.on('change', function () {
     if (this.checked) {
       $('#js-uniform-info').show();
     } else {

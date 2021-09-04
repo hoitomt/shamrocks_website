@@ -1,6 +1,6 @@
 class RegistrationsController < ApplicationController
   def index
-    regs = Registration.all
+    regs = Registration.where(created_at: START_DATE...END_DATE)
     @registration_map = {}
     Registration::GRADE_LEVELS.each do |key, contents|
       @registration_map["#{contents[:display_name]} - Girls"] = []
@@ -25,6 +25,7 @@ class RegistrationsController < ApplicationController
     # This is primarily to verify that the grade level is present.
     # But also, there isn't any point in continuing if the other fields aren't valid
     unless @registration.valid?
+      @display_override_duplicate_registration = !(@registration.errors[:grade_level].first =~ /registration already exists/).nil?
       render :new and return
     end
 
@@ -80,7 +81,8 @@ class RegistrationsController < ApplicationController
   def registration_params
     params.require(:registration).permit(:player_first_name, :player_last_name,
       :parent_first_name, :parent_last_name, :email, :grade_level, :team_gender,
-      :graduation_year, :need_uniform, :uniform_jersey_size, :uniform_short_size)
+      :graduation_year, :need_uniform, :uniform_jersey_size, :uniform_short_size,
+      :override_duplicate_registration)
   end
 
   # Token is created using Stripe Checkout or Elements!

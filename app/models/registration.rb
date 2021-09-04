@@ -1,4 +1,6 @@
 class Registration < ApplicationRecord
+  attr_accessor :override_duplicate_registration
+
   SIZES = [
     "Kids Small",
     "Kids Medium",
@@ -41,11 +43,20 @@ class Registration < ApplicationRecord
             presence: true
   validates :grade_level, :inclusion=> { :in => %w{fourth_grade fifth_grade sixth_grade seventh_grade eighth_grade} }
   validate :uniform_piece_is_required_if_need_uniform_is_true
+  validate :registration_already_exists_for_this_time_period
 
   def uniform_piece_is_required_if_need_uniform_is_true
     if need_uniform
       if uniform_jersey_size.blank? && uniform_short_size.blank?
         errors.add(:need_uniform, "- must select either a jersey size or a shorts size if true")
+      end
+    end
+  end
+
+  def registration_already_exists_for_this_time_period
+    if override_duplicate_registration.nil?
+      if Registration.exists?(player_first_name: player_first_name, player_last_name: player_last_name, grade_level: grade_level, created_at: START_DATE...END_DATE)
+        errors.add(:grade_level, ": A registration already exists for #{player_name} in #{grade_level_display}. If you would like to enter a duplicate registration, please click the checkbox below")
       end
     end
   end
