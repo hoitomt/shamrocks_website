@@ -36,5 +36,9 @@ class StaticController < ApplicationController
 
   def admin
   end
+
+  def waiver
+    
+  end
 end
 

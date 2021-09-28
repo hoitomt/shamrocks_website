@@ -83,6 +83,7 @@ a.sr-dropdown-item {
   font-size: 14px;
   color: white;
   padding: 0px 0.5rem;
+  white-space: nowrap;
   &:hover {
     background-color: #4f4f4f;
     color: white;
@@ -124,4 +125,10 @@ a.sr-dropdown-item {
 
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
+}
+
+.left-paragraph {
+  p {
+    text-align: left;
+  }
 }
