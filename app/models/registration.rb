@@ -1,4 +1,5 @@
 class Registration < ApplicationRecord
+  has_many :waivers
   attr_accessor :override_duplicate_registration
 
   SIZES = [
@@ -116,5 +117,9 @@ class Registration < ApplicationRecord
   def grade_level_display
     grade_level_map = GRADE_LEVELS[self.grade_level.to_sym] || {}
     return grade_level_map[:display_name]
+  end
+
+  def self.with_unsigned_waiver(start_date)
+    self.joins('left join waivers on registrations.id = waivers.registration_id').where('waivers.registration_id is null and registrations.created_at > ? and registrations.created_at < ?', start_date, DateTime.now)
   end
 end

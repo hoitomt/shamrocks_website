@@ -1,0 +1,5 @@
+<p>Hello <%= @registration.parent_name %>,</p>
+<p>
+  Eau Claire Shamrocks requires all players to sign a waiver in order to play. Please click on the link below to review and sign the waiver.
+</p>
+<%= link_to "Waiver for #{@registration.player_name}", new_waiver_url(registration_id: @registration.id) %>

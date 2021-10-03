@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'registrations/search', to: 'registrations#search', as: 'search_registrations'
   post 'registrations/edit', to: 'registrations#edit_post', as: 'post_edit_registration'
   resources :registrations, except: [:delete]
+  resources :waivers, except: [:edit, :update, :delete]
 
   root to: 'static#index'
 
