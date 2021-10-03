@@ -5,6 +5,7 @@ class WaiversController < ApplicationController
 
   def new
     @registration = Registration.find(params[:registration_id])
+    @waiver = Waiver.new
   end
 
   def create
@@ -14,6 +15,7 @@ class WaiversController < ApplicationController
       redirect_to root_path
     else
       flash.now[:alert] = "Please confirm that you have read the waiver"
+      @registration = Registration.find(waiver_params[:registration_id])
       render :new
     end
   end

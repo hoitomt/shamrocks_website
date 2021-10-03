@@ -1,3 +1,3 @@
 class Waiver < ApplicationRecord
-  validates :confirmation
+  validates_inclusion_of :confirmation, :in => [true]
 end

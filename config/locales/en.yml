@@ -37,3 +37,5 @@ en:
         player_first_name: "Player First Name"
         player_last_name: "Player Last Name"
         grade_level: "Grade Level"
+      waiver:
+        confirmation: "I HAVE READ THE ENTIRE WAIVER AGREEMENT, UNDERSTAND IT COMPLETELY AND AGREE TO BE BOUND BY ITS TERMS:"

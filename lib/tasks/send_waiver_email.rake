@@ -7,9 +7,8 @@ task :send_waiver_email => :environment do
 
   unsigned_registrations = Registration.with_unsigned_waiver(start_date)
 
-  puts "#{unsigned_registrations.count}"
   unsigned_registrations.each do |unsigned_registration|
-    puts "Send a waiver reminder email to #{unsigned_registration.email}"
+    puts "Send a waiver reminder email to #{unsigned_registration.email} | job id: #{unsigned_registration.id}"
     WaiverMailer.reminder_email(unsigned_registration).deliver_now
   end
 end
