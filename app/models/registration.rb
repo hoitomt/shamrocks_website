@@ -44,7 +44,7 @@ class Registration < ApplicationRecord
             presence: true
   validates :grade_level, :inclusion=> { :in => %w{fourth_grade fifth_grade sixth_grade seventh_grade eighth_grade} }
   validate :uniform_piece_is_required_if_need_uniform_is_true
-  validate :registration_already_exists_for_this_time_period
+  validate :registration_already_exists_for_this_time_period, on: :create
 
   def uniform_piece_is_required_if_need_uniform_is_true
     if need_uniform
