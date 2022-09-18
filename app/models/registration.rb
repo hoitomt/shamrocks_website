@@ -56,7 +56,7 @@ class Registration < ApplicationRecord
 
   def registration_already_exists_for_this_time_period
     if override_duplicate_registration.nil?
-      if Registration.exists?(player_first_name: player_first_name, player_last_name: player_last_name, grade_level: grade_level, created_at: START_DATE...END_DATE)
+      if Registration.exists?(player_first_name: player_first_name, player_last_name: player_last_name, grade_level: grade_level)
         errors.add(:grade_level, ": A registration already exists for #{player_name} in #{grade_level_display}. If you would like to enter a duplicate registration, please click the checkbox below")
       end
     end
