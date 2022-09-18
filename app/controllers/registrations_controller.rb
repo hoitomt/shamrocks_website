@@ -8,9 +8,9 @@ class RegistrationsController < ApplicationController
         {prefix: '2022-2023', param: "2022-04-01#{DATE_RANGE_SPLITTER}2023-03-31"}
       ]
     else
-      start_date = params[:date_range].split(DATE_RANGE_SPLITTER)[0]
-      end_date = params[:date_range].split(DATE_RANGE_SPLITTER)[1]
-      regs = Registration.where(created_at: start_date...end_date)
+      @start_date = params[:date_range].split(DATE_RANGE_SPLITTER)[0]
+      @end_date = params[:date_range].split(DATE_RANGE_SPLITTER)[1]
+      regs = Registration.where(created_at: @start_date...@end_date)
       @registration_map = {}
       Registration::GRADE_LEVELS.each do |key, contents|
         @registration_map["#{contents[:display_name]} - Girls"] = []

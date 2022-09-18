@@ -5,6 +5,7 @@
       <p><%= link_to "#{date_range[:prefix]} Registrations", registrations_path(date_range: "#{date_range[:param]}") %></p>
     <% end %>
   <% else %>
+    <p><strong><%= @start_date %> to <%= @end_date %></strong></p>
     <table class="table">
       <tr>
         <th scope="col">Name</th>
