@@ -14,6 +14,8 @@ gem 'bootsnap', '>= 1.4.8', require: false
 gem 'simple_form', '~> 5.1.0'
 gem 'stripe', '~> 5.38.0'
 gem 'thor', '~> 1.2.0'
+gem 'net-smtp', '~> 0.3.1', require: false
+gem 'matrix', '~> 0.4.2', require: false
 
 # this is to remove a warning `DidYouMean::SPELL_CHECKERS` on rails start
 # gem 'did_you_mean', '~> 1.5.0'
@@ -35,6 +37,4 @@ group :test do
   gem 'capybara', '>= 3.33'
   gem 'selenium-webdriver', '~> 3.142.7'
   gem 'webdrivers', '~> 4.6.1'
-  gem 'matrix', '~> 0.4.2', require: false
-  gem 'net-smtp', '~> 0.3.1', require: false
 end
