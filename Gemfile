@@ -15,6 +15,8 @@ gem 'simple_form', '~> 5.1.0'
 gem 'stripe', '~> 5.38.0'
 gem 'thor', '~> 1.2.0'
 gem 'net-smtp', '~> 0.3.1'
+gem 'net-pop', '~> 0.1.1'
+gem 'net-imap', '~> 0.2.3'
 gem 'matrix', '~> 0.4.2'
 
 # this is to remove a warning `DidYouMean::SPELL_CHECKERS` on rails start
