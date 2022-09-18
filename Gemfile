@@ -14,8 +14,8 @@ gem 'bootsnap', '>= 1.4.8', require: false
 gem 'simple_form', '~> 5.1.0'
 gem 'stripe', '~> 5.38.0'
 gem 'thor', '~> 1.2.0'
-gem 'net-smtp', '~> 0.3.1', require: false
-gem 'matrix', '~> 0.4.2', require: false
+gem 'net-smtp', '~> 0.3.1'
+gem 'matrix', '~> 0.4.2'
 
 # this is to remove a warning `DidYouMean::SPELL_CHECKERS` on rails start
 # gem 'did_you_mean', '~> 1.5.0'
