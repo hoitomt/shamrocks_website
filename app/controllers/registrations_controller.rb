@@ -1,17 +1,28 @@
 class RegistrationsController < ApplicationController
+  DATE_RANGE_SPLITTER = '...'
   def index
-    regs = Registration.where(created_at: START_DATE...END_DATE)
-    @registration_map = {}
-    Registration::GRADE_LEVELS.each do |key, contents|
-      @registration_map["#{contents[:display_name]} - Girls"] = []
-      @registration_map["#{contents[:display_name]} - Boys"] = []
-    end
-    regs.each do |reg|
-      key = "#{reg.grade_level_display} - #{reg.team_gender}"
-      if @registration_map[key]
-        @registration_map[key] << reg
-      else
-        @registration_map[key] = [reg]
+    if !params[:date_range]
+      @date_ranges = [
+        {prefix: '2020-2021', param: "2020-04-01#{DATE_RANGE_SPLITTER}2021-03-31"},
+        {prefix: '2021-2022', param: "2021-04-01#{DATE_RANGE_SPLITTER}2022-03-31"},
+        {prefix: '2022-2023', param: "2022-04-01#{DATE_RANGE_SPLITTER}2023-03-31"}
+      ]
+    else
+      start_date = params[:date_range].split(DATE_RANGE_SPLITTER)[0]
+      end_date = params[:date_range].split(DATE_RANGE_SPLITTER)[1]
+      regs = Registration.where(created_at: start_date...end_date)
+      @registration_map = {}
+      Registration::GRADE_LEVELS.each do |key, contents|
+        @registration_map["#{contents[:display_name]} - Girls"] = []
+        @registration_map["#{contents[:display_name]} - Boys"] = []
+      end
+      regs.each do |reg|
+        key = "#{reg.grade_level_display} - #{reg.team_gender}"
+        if @registration_map[key]
+          @registration_map[key] << reg
+        else
+          @registration_map[key] = [reg]
+        end
       end
     end
   end
