@@ -42,7 +42,7 @@ class Registration < ApplicationRecord
       amount: 100
     },
     fifth_grade_girls: {
-      amount: 50
+      amount: 25
     },
     sixth_grade_boys: {
       amount: 100
