@@ -66,6 +66,7 @@ function handleFormSubmission(elements, card, stripe) {
 
 function listenForAmountChanges() {
   document.getElementById('registration_grade_level').addEventListener('change', amountOwed);
+  document.getElementById('registration_team_gender').addEventListener('change', amountOwed);
   document.getElementById('registration_need_uniform').addEventListener('change', amountOwed);
   document.getElementById('registration_uniform_jersey_size').addEventListener('change', amountOwed);
   document.getElementById('registration_uniform_short_size').addEventListener('change', amountOwed);
@@ -74,15 +75,19 @@ function listenForAmountChanges() {
 function amountOwed() {
   let amount = 0;
   let gradeLevelSelector = document.getElementById('registration_grade_level');
+  let teamGenderSelector = document.getElementById('registration_team_gender');
   let uniformCheckBox = document.getElementById('registration_need_uniform');
   let jerseySelector = document.getElementById('registration_uniform_jersey_size');
   let shortSelector = document.getElementById('registration_uniform_short_size');
 
   let rawGradeLevelMap = JSON.parse(document.getElementById('js-payment-data').dataset.gradeLevelMap);
 
-  if (gradeLevelSelector.value) {
-    let gradeLevel = rawGradeLevelMap[gradeLevelSelector.value];
+  if (gradeLevelSelector.value && teamGenderSelector.value) {
+    let gradeLevelGenderKey = [gradeLevelSelector.value, teamGenderSelector.value.toLowerCase()].join('_');
+    let gradeLevel = rawGradeLevelMap[gradeLevelGenderKey];
     amount += gradeLevel.amount;
+  } else {
+    return;
   }
 
   if (uniformCheckBox.value == "1") {

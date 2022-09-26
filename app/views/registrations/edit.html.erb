@@ -45,8 +45,10 @@
   </div>
   <% end %>
 </div>
-<div id='js-payment-data' data-publishable-key=<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>
-  data-grade-level-map='<%= Registration::GRADE_LEVELS.to_json %>'></div>
+<div id='js-payment-data'
+     data-publishable-key=<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>
+     data-grade-level-map='<%= Registration::GRADE_LEVEL_GENDER_COSTS.to_json %>'>
+</div>
 
 <% content_for :javascript_custom_script_post do %>
 <script src="https://js.stripe.com/v3/"></script>

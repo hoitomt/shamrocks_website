@@ -16,22 +16,50 @@ class Registration < ApplicationRecord
   GRADE_LEVELS = {
     fourth_grade: {
       display_name: "4th Grade",
-      amount: 50
     },
     fifth_grade: {
       display_name: "5th Grade",
-      amount: 100
     },
     sixth_grade: {
       display_name: "6th Grade",
-      amount: 100
     },
     seventh_grade: {
       display_name: "7th Grade",
-      amount: 150
     },
     eighth_grade: {
       display_name: "8th Grade",
+    },
+  }
+
+  GRADE_LEVEL_GENDER_COSTS = {
+    fourth_grade_boys: {
+      amount: 50
+    },
+    fourth_grade_girls: {
+      amount: 50
+    },
+    fifth_grade_boys: {
+      amount: 100
+    },
+    fifth_grade_girls: {
+      amount: 50
+    },
+    sixth_grade_boys: {
+      amount: 100
+    },
+    sixth_grade_girls: {
+      amount: 100
+    },
+    seventh_grade_boys: {
+      amount: 150
+    },
+    seventh_grade_girls: {
+      amount: 150
+    },
+    eighth_grade_boys: {
+      amount: 0
+    },
+    eighth_grade_girls: {
       amount: 0
     },
   }
@@ -65,12 +93,13 @@ class Registration < ApplicationRecord
   def self.grade_level_name_map
     GRADE_LEVELS.map do |key, grade_level|
       [grade_level[:display_name], key.to_s]
-    end
+    end.uniq
   end
 
   def calculate_grade_level_cost
-    return nil unless grade_level
-    grade_level_map = GRADE_LEVELS[grade_level.to_sym]
+    return nil unless self.grade_level and self.team_gender
+    grade_level_gender_key = "#{self.grade_level}_#{self.team_gender.downcase}"
+    grade_level_map = GRADE_LEVEL_GENDER_COSTS[grade_level_gender_key.to_sym]
     return nil unless grade_level_map
 
     cost = grade_level_map[:amount] || 0

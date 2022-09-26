@@ -54,8 +54,16 @@ RSpec.describe Registration, type: :model do
       expect(registration.valid?).to eq true
     end
 
-    it '5th grade, with no uniform' do
+    it '5th grade girls, with no uniform' do
       registration_params[:grade_level] = 'fifth_grade'
+      registration = Registration.new(registration_params)
+      expect(registration.calculate_grade_level_cost).to eq 50
+      expect(registration.valid?).to eq true
+    end
+
+    it '5th grade boys, with no uniform' do
+      registration_params[:grade_level] = 'fifth_grade'
+      registration_params[:team_gender] = 'Boys'
       registration = Registration.new(registration_params)
       expect(registration.calculate_grade_level_cost).to eq 100
       expect(registration.valid?).to eq true
