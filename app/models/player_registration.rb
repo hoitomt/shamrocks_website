@@ -1,0 +1,3 @@
+class PlayerRegistration < ApplicationRecord
+
+end
