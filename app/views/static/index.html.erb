@@ -5,10 +5,12 @@
 <div class="mt-3 text-center sr-content">
   <h1>Home of the Eau Claire Shamrocks Basketball Club</h1>
 
+  <% if @registration_is_open %>
   <h2>Registration is Open!</h2>
   <p>
     <%= link_to 'Register' , new_registration_path, class: "btn btn-success btn-lg" %>
   </p>
+  <% end %>
   <p>The Eau Claire Shamrocks basketball club is a traveling basketball program dedicated to providing quality
     instruction and challenging competition for children in the 4th – 8th grade levels. We focus on individual and team
     fundamentals to motivate and facilitate player growth.

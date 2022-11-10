@@ -1,5 +1,6 @@
 class StaticController < ApplicationController
   def index
+    @registration_is_open = false
   end
 
   def about
@@ -38,7 +39,7 @@ class StaticController < ApplicationController
   end
 
   def waiver
-    
+
   end
 end
 
